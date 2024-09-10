@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Possibility Of Heart Disease</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background-color: #ffe6e6;
+        }
+        .container {
+            text-align: center;
+            background-color: #ffeaea; 
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.15);
+            max-width: 800px;
+        }
+        h2 {
+            color: #b22222; 
+            font-size: 24px;
+        }
+        .form-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 15px;
+            margin-top: 25px;
+            text-align: left;
+        }
+        input[type="text"], input[type="number"], input[type="float"] {
+            width: 100%;
+            padding: 12px;
+            border-radius: 5px;
+            border: 1px solid #ff9999;
+            background-color: #ffe6e6;
+        }
+        button {
+            padding: 12px 25px;
+            margin-top: 25px;
+            background-color: #b22222; 
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+        button:hover {
+            background-color: #8b0000; 
+        }
+        label {
+            font-size: 14px;
+            color: #333;
+            display: block;
+            margin-bottom: 5px;
+        }
+        .form-grid div {
+            display: flex;
+            flex-direction: column;
+            margin-right: 33px;
+        }
+    </style>
+    <script>
+        function capitalizeFirstLetter(input) {
+            const words = input.value.split(' ');
+            for (let i = 0; i < words.length; i++) {
+                words[i] = words[i].charAt(0).toUpperCase() + words[i].slice(1).toLowerCase();
+            }
+            input.value = words.join(' ');
+        }
+
+        function convertToLowercase(input) {
+            input.value = input.value.toLowerCase();
+        }
+    </script>
+</head>
+<body>
+    <div class="container">
+        <h2>The Possibility Of Heart Disease</h2>
+        <form action="/predict" method="POST">
+            <div class="form-grid">
+                <div>
+                    <label for="age">Age (in years):</label>
+                    <input type="number" name="age" id="age" placeholder="Age (e.g., 45)" required>
+                </div>
+                <div>
+                    <label for="sex">Sex (Male/Female):</label>
+                    <input type="text" name="sex" id="sex" placeholder="Sex (Male/Female)" required onblur="capitalizeFirstLetter(this)">
+                </div>
+                <div>
+                    <label for="dataset">Dataset Source:</label>
+                    <input type="text" name="dataset" id="dataset" placeholder="Dataset name" required onblur="capitalizeFirstLetter(this)">
+                </div>
+                <div>
+                    <label for="cp">Chest Pain Type (CP):</label>
+                    <input type="text" name="cp" id="cp" placeholder="e.g., typical angina" required onblur="convertToLowercase(this)">
+                </div>
+                <div>
+                    <label for="trestbps">Resting Blood Pressure (Trestbps) (mm Hg):</label>
+                    <input type="number" name="trestbps" id="trestbps" placeholder="e.g., 120" required>
+                </div>
+                <div>
+                    <label for="chol">Cholesterol Level (mg/dL):</label>
+                    <input type="number" name="chol" id="chol" placeholder="e.g., 200" required>
+                </div>
+                <div>
+                    <label for="fbs">Fasting Blood Sugar (FBS) > 120 mg/dL (True/False):</label>
+                    <input type="text" name="fbs" id="fbs" placeholder="True/False" required onblur="capitalizeFirstLetter(this)">
+                </div>
+                <div>
+                    <label for="restecg">Resting Electrocardiographic Results (Restecg):</label>
+                    <input type="text" name="restecg" id="restecg" placeholder="e.g., normal" required onblur="convertToLowercase(this)">
+                </div>
+                <div>
+                    <label for="thalch">Maximum Heart Rate Achieved (Thalach):</label>
+                    <input type="number" name="thalch" id="thalch" placeholder="e.g., 150" required>
+                </div>
+                <div>
+                    <label for="exang">Exercise Induced Angina (Exang) (True/False):</label>
+                    <input type="text" name="exang" id="exang" placeholder="True/False" required onblur="capitalizeFirstLetter(this)">
+                </div>
+                <div>
+                    <label for="oldpeak">Oldpeak (ST Depression induced by exercise):</label>
+                    <input type="float" name="oldpeak" id="oldpeak" placeholder="e.g., 1.4" required>
+                </div>
+                <div>
+                    <label for="slope">Slope of the Peak Exercise ST Segment:</label>
+                    <input type="text" name="slope" id="slope" placeholder="e.g., flat" required onblur="convertToLowercase(this)">
+                </div>
+                <div>
+                    <label for="ca">Number of Major Vessels (CA) (0-3):</label>
+                    <input type="number" name="ca" id="ca" placeholder="0-3" required>
+                </div>
+                <div>
+                    <label for="thal">Thalassemia (Thal):</label>
+                    <input type="text" name="thal" id="thal" placeholder="e.g., normal" required onblur="convertToLowercase(this)">
+                </div>
+            </div>
+            <button type="submit">Predict</button>
+        </form>
+    </div>
+</body>
+</html>
